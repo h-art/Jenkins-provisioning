@@ -29,6 +29,15 @@ file { "/home/vagrant/.ssh/id_rsa.pub":
     content => template('ssh/id_rsa.pub.erb')
 }
 
+file { "/home/vagrant/.ssh/known_hosts":
+    ensure  => "present",
+    mode    => 644,
+    owner   => "vagrant",
+    group   => "vagrant",
+    replace => "yes",
+    content => template('ssh/known_hosts.erb')
+}
+
 exec { "download-jenkins":
     unless => 'ls /home/vagrant/jenkins.war',
     require => Package['wget'],
