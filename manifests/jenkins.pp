@@ -12,6 +12,7 @@ exec { "apt-update":
 
 # SSH KEYS
 file { "/home/vagrant/.ssh/id_rsa":
+    unless  => "ls /home/vagrant/.ssh/id_rsa",
     ensure  => "present",
     mode    => 600,
     owner   => "vagrant",
@@ -21,6 +22,7 @@ file { "/home/vagrant/.ssh/id_rsa":
 }
 
 file { "/home/vagrant/.ssh/id_rsa.pub":
+    unless  => "ls /home/vagrant/.ssh/id_rsa.pub",
     ensure  => "present",
     mode    => 644,
     owner   => "vagrant",
