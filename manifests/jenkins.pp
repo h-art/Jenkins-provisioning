@@ -52,7 +52,7 @@ exec { "rvm-key":
 }
 
 exec { "install-rvm":
-    unless => 'ls /home/vagrant/.rvm',
+    unless => ['ls /home/vagrant/rvm'],
     require => Exec['rvm-key'],
     path => ["/bin", "/usr/bin"],
     command => 'su vagrant -c "curl -sSL https://github.com/wayneeseguin/rvm/tarball/stable -o /home/vagrant/rvm-stable.tar.gz && mkdir /home/vagrant/rvm && cd /home/vagrant/rvm && tar --strip-components=1 -xzf ../rvm-stable.tar.gz && ./install --auto-dotfiles --path ~"'
