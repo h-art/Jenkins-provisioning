@@ -10,6 +10,25 @@ exec { "apt-update":
     command => "sudo apt-get update"
 }
 
+# SSH KEYS
+file { "/home/vagrant/.ssh/id_rsa":
+    ensure  => "present",
+    mode    => 600,
+    owner   => "vagrant",
+    group   => "vagrant",
+    replace => "yes",
+    content => template('ssh/id_rsa.erb')
+}
+
+file { "/home/vagrant/.ssh/id_rsa.pub":
+    ensure  => "present",
+    mode    => 644,
+    owner   => "vagrant",
+    group   => "vagrant",
+    replace => "yes",
+    content => template('ssh/id_rsa.pub.erb')
+}
+
 exec { "download-jenkins":
     unless => 'ls /home/vagrant/jenkins.war',
     require => Package['wget'],
