@@ -1,3 +1,3 @@
 .vagrant
-/modules/ssh/id_rsa.erb
-/modules/ssh/id_rsa.pub.erb
+/modules/ssh/templates/id_rsa.erb
+/modules/ssh/templates/id_rsa.pub.erb
